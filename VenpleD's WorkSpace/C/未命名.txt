@@ -1,0 +1,19 @@
+opensource.apple.com/source/CF/CF-855.17/
+
+投保保单列表
+1不是保单 2matuDateFlag为N
+
+提交按钮: R：21 G：125： B：251
+背景色：217 220 222
+
+(width = 375, height = 258)
+ (width = 414, height = 271)
+320 216)
+
+plus 49
+
+5s 42
+
+6 43
+
+0.016442

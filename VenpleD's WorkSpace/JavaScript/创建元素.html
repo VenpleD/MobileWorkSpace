@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	
+
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var oBtn1 = document.getElementById('btn1');
+		var oUl1 = document.getElementById('ul1');
+		var oText1 = document.getElementById('text1');
+
+		oBtn1.onclick = function () {
+			var oLi = document.createElement('li');
+			oLi.innerHTML = oText1.value;
+			oUl1.appendChild(oLi);
+		}
+	}
+
+</script>
+</head>
+<body>
+<input type="text" id="text1" name="">
+<input type="button" id="btn1" value="创建" name="">
+<ul id="ul1">
+</ul>
+</body> 
+</html>

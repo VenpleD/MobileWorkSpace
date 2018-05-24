@@ -1,0 +1,378 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		415A0F871F4576F20003FCEC /* CustomImageFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 415A0F861F4576F20003FCEC /* CustomImageFileManager.m */; };
+		415A0F8A1F457FD50003FCEC /* ImageCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 415A0F891F457FD50003FCEC /* ImageCollectionViewCell.m */; };
+		415A0F8D1F459C090003FCEC /* UploadImageManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 415A0F8C1F459C090003FCEC /* UploadImageManager.m */; };
+		415A0F901F46923E0003FCEC /* UploadImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 415A0F8F1F46923E0003FCEC /* UploadImageView.m */; };
+		4176502A1F413D16000473E2 /* UploadImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 417650291F413D16000473E2 /* UploadImageCell.m */; };
+		4176502C1F413D3F000473E2 /* btn_add_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4176502B1F413D3F000473E2 /* btn_add_image@2x.png */; };
+		4176502F1F413F2B000473E2 /* UploadImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4176502E1F413F2B000473E2 /* UploadImageModel.m */; };
+		417650321F414246000473E2 /* UploadImageButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 417650311F414246000473E2 /* UploadImageButton.m */; };
+		41CC14541F4130070001EA71 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CC14531F4130070001EA71 /* main.m */; };
+		41CC14571F4130070001EA71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CC14561F4130070001EA71 /* AppDelegate.m */; };
+		41CC145A1F4130070001EA71 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41CC14591F4130070001EA71 /* ViewController.m */; };
+		41CC145D1F4130070001EA71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CC145B1F4130070001EA71 /* Main.storyboard */; };
+		41CC145F1F4130070001EA71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41CC145E1F4130070001EA71 /* Assets.xcassets */; };
+		41CC14621F4130070001EA71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 41CC14601F4130070001EA71 /* LaunchScreen.storyboard */; };
+		41D023911F41788900E9F5EE /* CustomImagePickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 41D023901F41788900E9F5EE /* CustomImagePickViewController.m */; };
+		7FDF2CD91FFF84CC005F3BE5 /* CustomUrlCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF2CD81FFF84CC005F3BE5 /* CustomUrlCache.m */; };
+		7FDF2CDC1FFF852D005F3BE5 /* CustomUrlProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 7FDF2CDB1FFF852D005F3BE5 /* CustomUrlProtocol.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		415A0F851F4576F20003FCEC /* CustomImageFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImageFileManager.h; sourceTree = "<group>"; };
+		415A0F861F4576F20003FCEC /* CustomImageFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImageFileManager.m; sourceTree = "<group>"; };
+		415A0F881F457FD50003FCEC /* ImageCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCollectionViewCell.h; sourceTree = "<group>"; };
+		415A0F891F457FD50003FCEC /* ImageCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCollectionViewCell.m; sourceTree = "<group>"; };
+		415A0F8B1F459C090003FCEC /* UploadImageManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageManager.h; sourceTree = "<group>"; };
+		415A0F8C1F459C090003FCEC /* UploadImageManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageManager.m; sourceTree = "<group>"; };
+		415A0F8E1F46923E0003FCEC /* UploadImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageView.h; sourceTree = "<group>"; };
+		415A0F8F1F46923E0003FCEC /* UploadImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageView.m; sourceTree = "<group>"; };
+		417650281F413D16000473E2 /* UploadImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageCell.h; sourceTree = "<group>"; };
+		417650291F413D16000473E2 /* UploadImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageCell.m; sourceTree = "<group>"; };
+		4176502B1F413D3F000473E2 /* btn_add_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_add_image@2x.png"; sourceTree = "<group>"; };
+		4176502D1F413F2B000473E2 /* UploadImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageModel.h; sourceTree = "<group>"; };
+		4176502E1F413F2B000473E2 /* UploadImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageModel.m; sourceTree = "<group>"; };
+		417650301F414246000473E2 /* UploadImageButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadImageButton.h; sourceTree = "<group>"; };
+		417650311F414246000473E2 /* UploadImageButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadImageButton.m; sourceTree = "<group>"; };
+		41CC144F1F4130070001EA71 /* UploadQueues.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UploadQueues.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		41CC14531F4130070001EA71 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		41CC14551F4130070001EA71 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		41CC14561F4130070001EA71 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		41CC14581F4130070001EA71 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		41CC14591F4130070001EA71 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		41CC145C1F4130070001EA71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		41CC145E1F4130070001EA71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		41CC14611F4130070001EA71 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		41CC14631F4130070001EA71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41D0238F1F41788900E9F5EE /* CustomImagePickViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomImagePickViewController.h; sourceTree = "<group>"; };
+		41D023901F41788900E9F5EE /* CustomImagePickViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomImagePickViewController.m; sourceTree = "<group>"; };
+		7FDF2CD71FFF84CC005F3BE5 /* CustomUrlCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomUrlCache.h; sourceTree = "<group>"; };
+		7FDF2CD81FFF84CC005F3BE5 /* CustomUrlCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomUrlCache.m; sourceTree = "<group>"; };
+		7FDF2CDA1FFF852D005F3BE5 /* CustomUrlProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomUrlProtocol.h; sourceTree = "<group>"; };
+		7FDF2CDB1FFF852D005F3BE5 /* CustomUrlProtocol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomUrlProtocol.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		41CC144C1F4130070001EA71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		41CC14461F4130070001EA71 = {
+			isa = PBXGroup;
+			children = (
+				41CC14511F4130070001EA71 /* UploadQueues */,
+				41CC14501F4130070001EA71 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		41CC14501F4130070001EA71 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				41CC144F1F4130070001EA71 /* UploadQueues.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		41CC14511F4130070001EA71 /* UploadQueues */ = {
+			isa = PBXGroup;
+			children = (
+				41CC14551F4130070001EA71 /* AppDelegate.h */,
+				41CC14561F4130070001EA71 /* AppDelegate.m */,
+				41CC14581F4130070001EA71 /* ViewController.h */,
+				41CC14591F4130070001EA71 /* ViewController.m */,
+				7FDF2CDA1FFF852D005F3BE5 /* CustomUrlProtocol.h */,
+				7FDF2CDB1FFF852D005F3BE5 /* CustomUrlProtocol.m */,
+				7FDF2CD71FFF84CC005F3BE5 /* CustomUrlCache.h */,
+				7FDF2CD81FFF84CC005F3BE5 /* CustomUrlCache.m */,
+				41D0238F1F41788900E9F5EE /* CustomImagePickViewController.h */,
+				41D023901F41788900E9F5EE /* CustomImagePickViewController.m */,
+				415A0F881F457FD50003FCEC /* ImageCollectionViewCell.h */,
+				415A0F891F457FD50003FCEC /* ImageCollectionViewCell.m */,
+				415A0F851F4576F20003FCEC /* CustomImageFileManager.h */,
+				415A0F861F4576F20003FCEC /* CustomImageFileManager.m */,
+				415A0F8B1F459C090003FCEC /* UploadImageManager.h */,
+				415A0F8C1F459C090003FCEC /* UploadImageManager.m */,
+				4176502D1F413F2B000473E2 /* UploadImageModel.h */,
+				4176502E1F413F2B000473E2 /* UploadImageModel.m */,
+				417650301F414246000473E2 /* UploadImageButton.h */,
+				417650311F414246000473E2 /* UploadImageButton.m */,
+				415A0F8E1F46923E0003FCEC /* UploadImageView.h */,
+				415A0F8F1F46923E0003FCEC /* UploadImageView.m */,
+				417650281F413D16000473E2 /* UploadImageCell.h */,
+				417650291F413D16000473E2 /* UploadImageCell.m */,
+				4176502B1F413D3F000473E2 /* btn_add_image@2x.png */,
+				41CC145B1F4130070001EA71 /* Main.storyboard */,
+				41CC145E1F4130070001EA71 /* Assets.xcassets */,
+				41CC14601F4130070001EA71 /* LaunchScreen.storyboard */,
+				41CC14631F4130070001EA71 /* Info.plist */,
+				41CC14521F4130070001EA71 /* Supporting Files */,
+			);
+			path = UploadQueues;
+			sourceTree = "<group>";
+		};
+		41CC14521F4130070001EA71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				41CC14531F4130070001EA71 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		41CC144E1F4130070001EA71 /* UploadQueues */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 41CC14661F4130070001EA71 /* Build configuration list for PBXNativeTarget "UploadQueues" */;
+			buildPhases = (
+				41CC144B1F4130070001EA71 /* Sources */,
+				41CC144C1F4130070001EA71 /* Frameworks */,
+				41CC144D1F4130070001EA71 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UploadQueues;
+			productName = UploadQueues;
+			productReference = 41CC144F1F4130070001EA71 /* UploadQueues.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		41CC14471F4130070001EA71 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = VenpleD;
+				TargetAttributes = {
+					41CC144E1F4130070001EA71 = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 3V4JBL24FX;
+						ProvisioningStyle = Manual;
+					};
+				};
+			};
+			buildConfigurationList = 41CC144A1F4130070001EA71 /* Build configuration list for PBXProject "UploadQueues" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 41CC14461F4130070001EA71;
+			productRefGroup = 41CC14501F4130070001EA71 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				41CC144E1F4130070001EA71 /* UploadQueues */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		41CC144D1F4130070001EA71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41CC14621F4130070001EA71 /* LaunchScreen.storyboard in Resources */,
+				41CC145F1F4130070001EA71 /* Assets.xcassets in Resources */,
+				41CC145D1F4130070001EA71 /* Main.storyboard in Resources */,
+				4176502C1F413D3F000473E2 /* btn_add_image@2x.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		41CC144B1F4130070001EA71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				415A0F8D1F459C090003FCEC /* UploadImageManager.m in Sources */,
+				417650321F414246000473E2 /* UploadImageButton.m in Sources */,
+				4176502A1F413D16000473E2 /* UploadImageCell.m in Sources */,
+				41CC145A1F4130070001EA71 /* ViewController.m in Sources */,
+				415A0F901F46923E0003FCEC /* UploadImageView.m in Sources */,
+				41CC14571F4130070001EA71 /* AppDelegate.m in Sources */,
+				415A0F8A1F457FD50003FCEC /* ImageCollectionViewCell.m in Sources */,
+				415A0F871F4576F20003FCEC /* CustomImageFileManager.m in Sources */,
+				41D023911F41788900E9F5EE /* CustomImagePickViewController.m in Sources */,
+				7FDF2CD91FFF84CC005F3BE5 /* CustomUrlCache.m in Sources */,
+				4176502F1F413F2B000473E2 /* UploadImageModel.m in Sources */,
+				7FDF2CDC1FFF852D005F3BE5 /* CustomUrlProtocol.m in Sources */,
+				41CC14541F4130070001EA71 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		41CC145B1F4130070001EA71 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41CC145C1F4130070001EA71 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		41CC14601F4130070001EA71 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				41CC14611F4130070001EA71 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		41CC14641F4130070001EA71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		41CC14651F4130070001EA71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		41CC14671F4130070001EA71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 3V4JBL24FX;
+				INFOPLIST_FILE = UploadQueues/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanglaoxian.upload;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "6d4c792e-0835-49d9-8f18-48047fb0425d";
+				PROVISIONING_PROFILE_SPECIFIER = HMHealthAlterable;
+			};
+			name = Debug;
+		};
+		41CC14681F4130070001EA71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = UploadQueues/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yanglaoxian.upload;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		41CC144A1F4130070001EA71 /* Build configuration list for PBXProject "UploadQueues" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41CC14641F4130070001EA71 /* Debug */,
+				41CC14651F4130070001EA71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		41CC14661F4130070001EA71 /* Build configuration list for PBXNativeTarget "UploadQueues" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				41CC14671F4130070001EA71 /* Debug */,
+				41CC14681F4130070001EA71 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 41CC14471F4130070001EA71 /* Project object */;
+}

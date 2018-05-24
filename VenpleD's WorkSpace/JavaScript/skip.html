@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="apple-itunes-app" content="app-id=com.pingan.SetDefault, affiliate-data=myAffiliateData, app-argument=myURL">
+<link href="" rel="stylesheet">
+
+<!-- <script type="text/javascript">
+	
+	      function ios(){
+        var ifr = document.createElement("iframe");
+        ifr.src = "openwjtr://com.tyrbl.wjtr"; /***打开app的协议，有ios同事提供***/
+        ifr.style.display = "none"; 
+        document.body.appendChild(ifr);
+        window.setTimeout(function(){
+          document.body.removeChild(ifr);
+           window.location.href = "http://www.wjtr.com/download/index.html"; /***下载app的地址***/
+        },2000)
+      };
+      ios();
+</script> -->
+<script language="javascript" src="http://www.codefans.net/ajaxjs/jquery1.3.2.js"></script>
+<script language="javascript">
+jQuery(function($){
+  var url = 'http://chaxun.1616.net/s.php?type=ip&output=json&callback=?&_='+Math.random();  
+  $.getJSON(url, function(data){
+    alert(data.Ip);  
+  });
+});
+</script>
+
+<script language="javascript">
+var browser={
+    versions:function(){
+    var u = navigator.userAgent, app = navigator.appVersion;
+    return {//移动终端浏览器版本信息
+      trident: u.indexOf('Trident') > -1, //IE内核
+      presto: u.indexOf('Presto') > -1, //opera内核
+      webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+      gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+      mobile: !!u.match(/AppleWebKit.*Mobile.*/)||!!u.match(/AppleWebKit/), //是否为移动终端
+      ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+      android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+      iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+      iPad: u.indexOf('iPad') > -1, //是否iPad
+      webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+    };
+   }(),
+   language:(navigator.browserLanguage || navigator.language).toLowerCase()
+}
+function whatBrowser() {  
+document.Browser.Name.value=navigator.appName;  
+document.Browser.Version.value=navigator.appVersion;  
+document.Browser.Code.value=navigator.appCodeName;  
+document.Browser.Agent.value=navigator.userAgent;  
+}  
+window.onload = function () {
+  whatBrowser();
+// 	 if (navigator.userAgent.match(/(iPhone|iPod|iPad);?/i)) {
+//   var loadDateTime = new Date();
+//   window.setTimeout(function() {
+//    var timeOutDateTime = new Date();
+//    if (timeOutDateTime - loadDateTime < 500) {
+//     window.location = "要跳转的页面URL";
+//    } else {
+//     // window.close();
+//    }
+//   },
+//   25);
+//   window.location = "haofuli://";
+//  } else if (navigator.userAgent.match(/android/i)) {
+//   var state = null;
+//   try {
+//    state = window.open("haofuli://", '_blank');
+//   } catch(e) {}
+//   if (state) {
+//    window.close();
+//   } else {
+//    window.location = "要跳转的页面URL";
+//   }
+//  }	
+}
+
+</script>
+
+</head>
+
+<body>
+<TABLE BORDER> 
+<FORM NAME="Browser"> 
+<TR> 
+<TD> 浏览器名称: </TD> 
+<TD> <INPUT TYPE="txt" NAME="Name" Size="110%"></TD> 
+</TR> 
+<TR> 
+<TD> 版本号:</TD> 
+<TD> <INPUT TYPE="txt" NAME="Version" Size="110%"></TD> 
+</TR> 
+<TR> 
+<TD> 代码名称: </TD> 
+<TD> <INPUT TYPE="txt" NAME="Code" Size="110%"></TD> 
+</TR> 
+<TR> 
+<TD> 用户代理标识:</TD> 
+<TD> <INPUT TYPE="txt" NAME="Agent" Size="110%"></TD> 
+</TR> 
+</FORM> 
+</TABLE> 
+<a  href="haofuli://">点击</a>
+<!-- <iframe src="haofuli://" style="width: 200px; height: 100px">dongxi</iframe> -->
+
+<input type="button" name="" value="变绿" onclick="changeColor('green')">
+<input type="button" name="" value="变红" onclick="changeColor('red')">
+<input type="button" name="" value="变蓝" onclick="changeColor('blue')">
+
+<div id="div1"></div>
+    
+</body>
+</html>

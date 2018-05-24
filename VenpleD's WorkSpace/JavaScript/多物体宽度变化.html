@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+div {width:100px; height:30px; margin-top:20px; background:red;}
+
+</style>
+<script type="text/javascript">
+
+window.onload = function () {
+	var aDiv = document.getElementsByTagName('div');
+	for (var i = 0; i < aDiv.length; i++) {
+		aDiv[i].timer = null;
+		aDiv[i].onmouseover = function () {
+			startMove(this, 400);
+		};
+		aDiv[i].onmouseout = function () {
+			startMove(this, 100);
+		};
+	}
+}
+
+function startMove(obj, iTarget) {
+	clearInterval(obj.timer);
+	obj.timer = setInterval(function () {
+		var speed = (iTarget - obj.offsetWidth) / 5;
+		speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed);
+		if (obj.offsetWidth == iTarget) {
+			clearInterval(obj.timer);
+		} else {
+			obj.style.width = obj.offsetWidth + speed + 'px';
+		}
+	}, 30);
+}
+
+</script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body> 
+</html>

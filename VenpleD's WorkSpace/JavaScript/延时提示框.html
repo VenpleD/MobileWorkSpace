@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	div {
+		float: left;
+		margin: 10px;
+	}
+	#divOne{
+		width: 50px;
+		height: 50px;
+		background-color: red;
+	}
+	#divTwo {
+		width: 200px;
+		height: 80px;
+		background-color: gray;
+		display: none;
+	}
+
+</style>
+<script type="text/javascript">
+	
+window.onload = function () {
+	var oDivOne =document.getElementById('divOne');
+	var oDivTwo = document.getElementById('divTwo');
+	var timer = null;
+
+	function fnTimeOut() {
+		return setTimeout(function () {
+			oDivTwo.style.display = 'none';
+		}, 500);
+	}
+
+	oDivOne.onmouseover = function () {
+		clearTimeout(timer);
+		oDivTwo.style.display = 'block';
+	}
+	oDivTwo.onmouseout = oDivOne.onmouseout = function () {
+		timer = fnTimeOut();
+	}
+	oDivTwo.onmouseover = function () {
+		clearTimeout(timer);
+	}
+
+}	
+
+
+</script>
+</head>
+<body>
+    
+<div id = "divOne"></div>
+<div id = 'divTwo'></div>
+
+</body>
+</html>

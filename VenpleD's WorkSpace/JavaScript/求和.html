@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+#div1 {
+	width: 200px;
+	height: 100px;
+	background: #ccc;
+	border: 1px solid #999;
+	display: none;
+}
+</style>
+
+<script type="text/javascript">
+window.onload = function () {
+	var oTextOne = document.getElementById('textOne');
+	var oTextTwo = document.getElementById('textTwo');
+	var oButton = document.getElementById('button');
+
+	oButton.onclick = function () {
+		oTextOne = parseInt(oTextOne.value);
+		oTextTwo = parseInt(oTextTwo.value);
+		if (isNaN(oTextOne) || isNaN(oTextTwo)) {
+			alert('请重新输入');
+		} else {
+			alert(oTextTwo + oTextOne);
+		}
+	}
+}
+
+</script>
+
+</head>
+
+<body>
+<input type="text" id="textOne" name="">
+<input type="text" id="textTwo" name="">
+<input type="button" id="button" value="求和" name="">
+    
+</body>
+</html>

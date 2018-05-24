@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>PlayImages</title>
+<link rel="stylesheet" type="text/css" href="./CssAndJs/playImages.css">
+<script src="./CssAndJs/move.js"></script>
+<script type="text/javascript">
+
+function getByClass(oParent, subClass) {
+	var aEle = oParent.getElementsByTagName('*');
+	var aResult = [];
+	var reg = new RegExp('\\b'+subClass+'\\b','g');//构造函数方式
+	for (var i = 0; i < aEle.length; i++) {
+		reg.lastIndex = 0;
+		if (reg.test(aEle[i].className)) {
+		    aResult.push(aEle[i]);
+		}
+	}
+	return aResult;
+}
+
+window.onload = function () {
+	var oPlayImages = document.getElementById('playImages');
+	var oBtnPre = getByClass(oPlayImages, 'btn_pre')[0];
+	var oBtnNext = getByClass(oPlayImages, 'btn_next')[0];
+	var oMarkLeft = getByClass(oPlayImages, 'mark_left')[0];
+	var oMarkRight = getByClass(oPlayImages, 'mark_right')[0];
+
+	// alert(getByClass(oPlayImages, 'btn_pre'));
+
+	oMarkLeft.onmouseover = function () {
+		startMove(oBtnPre, 'opacity', 100);
+	};
+	oMarkLeft.onmouseout = function () {
+		startMove(oBtnPre, 'opacity', 0);
+	};
+
+	oMarkRight.onmouseover = function () {
+		startMove(oBtnNext, 'opacity', 100);
+	};
+	oMarkRight.onmouseout = function () {
+		startMove(oBtnNext, 'opacity', 0);
+	};
+}
+
+</script>
+</head>
+<body>
+<div id="playImages" class="play">
+	<ul class="bg_pic">
+		<div class="btn_pre btn"></div>
+		<div class="btn_next btn"></div>
+		<a class="mark_left" href="javascript:;"></a>
+		<a class="mark_right" href="javascript:;"></a>
+		<li><img src="./image/1.png"></li>
+		<li><img src="./image/2.png"></li>
+		<li><img src="./image/3.png"></li>
+		<li><img src="./image/4.png"></li>
+		<li><img src="./image/5.png"></li>
+	</ul>
+</div>
+</body>
+</html>

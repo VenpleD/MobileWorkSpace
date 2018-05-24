@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+<meta charset="UTF-8">
+<style type="text/css">
+
+input {
+    margin:10px auto;
+}
+
+</style>
+
+<script type="text/javascript">
+var aTitle = [
+    '发送参数给native',
+    '发送参数并且有回调方法',
+    'js方法中的回调里面方法里面有入参有返回值',
+    '执行带有返回参数的native方法',
+];
+var clientWidth = document.documentElement.clientWidth;
+
+function sendParamsToNative () {
+    InjectObject.params('jsParamOne','jsParamTwo');
+}
+
+function sendParamsWithFuncToNativeOne () {
+    InjectObject.paramsWithFuncOne('jsParamOne','jsParamTwo',function () {
+        alert('js:调我！不开心');
+    });
+}
+
+function sendParamsWithFuncToNativeTwo () {
+    InjectObject.paramsWithFuncTwo('jsParamOne','jsParamTwo',function (jsonString) {
+        alert('js:给我的参数' + jsonString);
+        return 'jsFuncCallBackReturnValue';
+    });
+}
+
+function excuteHaveRetValueNative () {
+    var retValue = InjectObject.haveRetValue('jsParams');
+    alert('js:方法的返回值为：' + retValue);
+}
+
+window.onload = function () {
+    for (var i = 0; i < aTitle.length; i++) {
+        var oInput = document.createElement('input');
+        oInput['type'] = 'button';
+        oInput['value'] = aTitle[i];
+        oInput.style['width'] = clientWidth + 'px';
+        oInput.onclick = sendParamsToNative;
+        document.documentElement.appendChild(oInput);
+    }
+}
+
+
+</script>
+
+
+</head>
+<body>
+</body>
+</html>

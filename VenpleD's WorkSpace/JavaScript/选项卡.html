@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+#content 
+{
+	width: 250px;
+	height: 100px;
+	border: 1px solid purple;
+	position: relative;
+
+}
+.divOne
+{
+	position: absolute;
+	width: 250px;
+	height: 100px;
+	border: 1px solid gray;
+	float: left;
+}
+#menu
+{
+	display: inline-block;
+	margin: 0px;
+	padding: 0px;
+}
+#menu li
+ {
+	float: left;
+	list-style: none;
+	margin: 5px;
+}
+</style>
+<script type="text/javascript">
+		
+		
+	function loadFun () {
+
+		
+		initContent();
+		overEvent();
+	};
+	function initContent () {
+		var colorArray = ['red', 'green', 'blue', 'yellow'];
+		var contentArray = document.getElementsByClassName('divOne');
+		for (let i = 0; i < contentArray.length; i++) {
+			if (i != 0) {
+				contentArray[i].style.display = 'none';	
+			}
+			contentArray[i].style.backgroundColor = colorArray[i];
+		}
+	};
+	function overEvent () {
+		var contentArray = document.getElementsByClassName('divOne');
+		var btnArray = document.getElementsByClassName('btn');
+		var maskContent = 0;
+		for (let i = 0; i < btnArray.length; i++) {
+			if (i == 0) {
+				btnArray[i].style.backgroundColor = 'gray';
+				btnArray[i].style.color = 'white';	
+			}
+			btnArray[i].onmouseover = function () {
+				btnArray[i].style.backgroundColor = btnArray[maskContent].style.backgroundColor;
+				btnArray[i].style.color = btnArray[maskContent].style.color;
+
+				if (contentArray[i].style.display == 'none') {
+					contentArray[i].style.display = contentArray[maskContent].style.display;
+					contentArray[maskContent].style.display = 'none';
+					btnArray[maskContent].style.backgroundColor = 'white';
+					btnArray[maskContent].style.color = 'black';
+					maskContent = i;
+				}
+			};
+		}
+	}
+	window.onload = loadFun;
+</script>
+</head>
+<body>
+    
+
+<ul id="menu">
+	<li class="btn">one</li>
+	<li class="btn">two</li>
+	<li class="btn">three</li>
+	<li class="btn">four</li>
+</ul>
+<div id="content">
+	<div class="divOne"></div>
+	<div class="divOne"></div>
+	<div class="divOne"></div>
+	<div class="divOne"></div>
+</div>
+
+
+</body>
+</html>

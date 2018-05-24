@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	
+
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		var oUl1 = document.getElementById('ul1');
+		var aLink = oUl1.getElementsByTagName('a');
+
+		for (var i = 0; i < aLink.length; i++) {
+			aLink[i].onclick=function () {
+				oUl1.removeChild(this.parentNode);
+			}
+		}
+	}
+
+</script>
+</head>
+<body>
+<ul id="ul1">
+	<li>fdsfdsafas<a href="javascript:;">删除</a></li>
+	<li>qweqwe<a href="javascript:;">删除</a></li>
+	<li>fsadf<a href="javascript:;">删除</a></li>
+	<li>123123<a href="javascript:;">删除</a></li>
+	<li>fbdf<a href="javascript:;">删除</a></li>
+	<li>12312fdsfsd<a href="javascript:;">删除</a></li>
+</ul>
+</body> 
+</html>

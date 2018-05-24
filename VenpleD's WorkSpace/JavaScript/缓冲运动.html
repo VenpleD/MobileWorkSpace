@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+
+#div1 {width:50px; height:50px; background:green; position:absolute; left:600px;}
+
+</style>
+<script type="text/javascript">
+window.onload = function () {
+	var oBtn = document.getElementById('btn1');
+	oBtn.onclick = function () {
+		startMove(300);
+	}
+}
+
+var timer = null;
+function startMove (iTarget) {
+	var oDiv1 = document.getElementById('div1');
+	clearInterval(timer);
+
+	timer = setInterval(function () {
+		var speed = (iTarget - oDiv1.offsetLeft) / 6;
+		speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
+		if (oDiv1.offsetLeft == iTarget) {
+			clearInterval(timer);
+		} else {
+			oDiv1.style.left = oDiv1.offsetLeft + speed + 'px';
+			document.title = oDiv1.offsetLeft + ',' + speed;
+		}
+	}, 30);
+}
+
+
+
+</script>
+</head>
+<body>
+<input type="button" id="btn1" value="开始运动" name="">
+<div id="div1">
+</div>
+</body> 
+</html>

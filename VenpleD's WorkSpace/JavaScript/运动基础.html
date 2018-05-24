@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+
+#div1 {width:200px; height:200px; background:#ccc; position:absolute; left:20px; top:50px;}	
+
+</style>
+<script type="text/javascript">
+var timer = null;
+function startMove() {
+	alert(timer);
+	if (timer) return;
+	var oDiv1 = document.getElementById('div1');
+	var speed = 10;
+	timer = setInterval(function () {
+		if (oDiv1.offsetLeft >= 300) {
+			chearInterval(timer);
+		} else {
+			oDiv1.style.left = oDiv1.offsetLeft + speed + 'px';	
+		}
+
+	}, 30);
+}
+</script>
+</head>
+<body>
+<input type="button" onclick="startMove()" name="" value="开始运动">
+<div id="div1"></div>
+</body> 
+</html>

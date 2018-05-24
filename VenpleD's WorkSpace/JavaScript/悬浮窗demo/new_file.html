@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style type="text/css">
+			.D1{
+				width: 100px;
+				border:1px solid red;
+				cursor: pointer;
+				position: relative;
+			}
+			
+			#dd{
+				margin-top: 5px;
+				padding: 5px;
+				padding-top: 10px;
+				display: inline-block;
+				border: 1px solid #d76348;
+				background-color: #f2e4e1;
+				position: absolute;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="D1">鼠标悬停
+				<div id="dd" style="display:none">
+					<p>账户姓名：<span class="AC_name"></span></p >
+					<p>缴费代表号：<span class="AC_num"></span></p >
+				</div>
+			</div>
+
+		</div>
+		
+	</body>
+	<script src="jquery.js"></script>
+	<script type="text/javascript">
+		$(".D1").mousemove(function(){
+			$("#dd").show();
+		}).mouseleave(function(){		
+			$("#dd").hide();
+		})
+		
+		//模拟数据
+		var obj = {"name":"韩晨希","phone":13512345678};
+		$(".AC_name").text(obj.name);
+		$(".AC_num").text(obj.phone);
+	</script>
+</html>

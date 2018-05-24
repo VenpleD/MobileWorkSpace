@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	
+
+</style>
+<script type="text/javascript">
+	function getByClass(oParent, oClass) {
+		var aResult = [];
+		var aEle = oParent.getElementsByTagName('*');
+		for (var i = 0; i < aEle.length; i++) {
+			if (aEle[i].className == oClass) {
+				aResult.push(aEle[i]);
+			}
+		}
+		return aResult;
+	}
+	window.onload = function() {
+		var oUl = document.getElementById('ul1');
+		var aBox = getByClass(oUl, 'box');
+		for (var i = 0; i < aBox.length; i++) {
+			aBox[i].style.background = 'red';
+		}
+	}
+
+</script>
+</head>
+<body>
+<ul id="ul1">
+	<li class="box"></li>
+	<li class="box"></li>
+	<li></li>
+	<li></li>
+	<li></li>
+	<li class="box"></li>
+	<li></li>
+</ul>
+</body> 
+</html>

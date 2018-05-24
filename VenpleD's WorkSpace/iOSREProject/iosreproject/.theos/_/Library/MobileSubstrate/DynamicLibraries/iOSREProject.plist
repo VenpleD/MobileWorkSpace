@@ -1,0 +1,10 @@
+{
+	Filter = {
+		Executables = ();
+		Classes = ();
+		Mode = Any;
+		Bundles = (
+			"com.apple.springboard",
+		);
+	};
+}
