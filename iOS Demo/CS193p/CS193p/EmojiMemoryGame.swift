@@ -7,15 +7,8 @@
 
 import SwiftUI
 
-
-protocol Greatness {
-    func isGreaterThan(other: Self) -> Bool
-    /// 这里的Self指的是实现该协议的（任何事物）的类型
-}
-
-
 class EmojiMemoryGame: ObservableObject {
-    private(set) var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
+    @Published private var model: MemoryGame<String> = EmojiMemoryGame.createMemoryGame()
     
     static func createMemoryGame() -> MemoryGame<String> {
         let emojis: Array<String> = ["👻", "🎃", "🕷️"]
