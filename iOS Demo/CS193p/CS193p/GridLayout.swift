@@ -59,7 +59,7 @@ struct GridLayout {
     
     func location(ofItemAt index: Int) -> CGPoint {
         let pointX = self.itemSize.width * CGFloat(index % self.columnCount) + self.itemSize.width / 2.0
-        let pointY = self.itemSize.height * CGFloat(index % self.rowCount) + self.itemSize.height / 2.0
+        let pointY = self.itemSize.height * CGFloat(index / self.columnCount) + self.itemSize.height / 2.0
         return CGPoint(x: pointX, y: pointY)
     }
 }
