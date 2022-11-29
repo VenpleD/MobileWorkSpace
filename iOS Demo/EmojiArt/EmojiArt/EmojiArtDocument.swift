@@ -13,6 +13,10 @@ class EmojiArtDocument: ObservableObject {
     
     @Published private var emojiArt: EmojiArt = EmojiArt()
     
+    @Published private(set) var backgroundImage: UIImage?
+    
+    var emojiList: [EmojiArt.Emoji] { emojiArt.emojis }
+    
     func addEmoji(_ emoji: String, at location: CGPoint, size: CGFloat) {
         emojiArt.addEmoji(emoji, x: Int(location.x), y: Int(location.y), size: Int(size))
     }
@@ -32,7 +36,26 @@ class EmojiArtDocument: ObservableObject {
     
     func setBackgroundURL(_ url: URL?) {
         emojiArt.backgroundURL = url?.imageURL;
+        fetchBackgroundImage()
     }
 
+    func fetchBackgroundImage() {
+        if let url = emojiArt.backgroundURL {
+            DispatchQueue.global(qos: .userInitiated).async {
+                if let imageData = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
+                        if url == self.emojiArt.backgroundURL {
+                            self.backgroundImage = UIImage(data: imageData)                            
+                        }
+                    }
+                }
+            }
+        }
+    }
     
+}
+
+extension EmojiArt.Emoji {
+    var fontSize: CGFloat { CGFloat(size) }
+    var position: CGPoint { CGPoint(x: CGFloat(x), y: CGFloat(y)) }
 }
