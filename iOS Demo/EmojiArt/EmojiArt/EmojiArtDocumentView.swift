@@ -27,28 +27,37 @@ struct EmojiArtDocumentView: View {
             GeometryReader { geometry in
                 ZStack {
                     Color.white.overlay(
-                        Group {
-                            if document.backgroundImage != nil {
-                                Image(uiImage: document.backgroundImage!)
-                            }
-                        }
+                        EmojiArtOptionalImageView(backgroundImage: document.backgroundImage)
+                            .frame(width: geometry.size.width, height: geometry.size.height)
+                            .clipped()
                     )
-                    .edgesIgnoringSafeArea([.horizontal, .bottom])
-                /// 第一个参数，是你想要拖拽的是什么，这里我们想要拖拽的是public.image，这里"public.image"是一个URI，它规定了这些内容类型的公共协议，这些内容都是image，我们需要URL，那么拖拽的提供者是可以给出URL的
-                /// 第二个参数是绑定参数  ，这个参数大概是说，当我们拖过来的时候，不是他们掉下来的时候，而是拖过来的时候
-                    .onDrop(of: ["public.image", "public.text"], isTargeted: nil) { providers, location in
-                        var convertLocation = location
-                        convertLocation = CGPoint(x: convertLocation.x - geometry.size.width/2, y:convertLocation.y - geometry.size.height/2)
-                        return self.drop(providers: providers, at: convertLocation)
-                    }
                     ForEach(self.document.emojiList) { emoji in
                         Text(emoji.text)
                             .font(self.font(for: emoji))
                             .position(self.position(for: emoji, in: geometry.size))
                     }
                 }
+                .clipped()
+                .edgesIgnoringSafeArea([.horizontal, .bottom])                
+            /// 第一个参数，是你想要拖拽的是什么，这里我们想要拖拽的是public.image，这里"public.image"是一个URI，它规定了这些内容类型的公共协议，这些内容都是image，我们需要URL，那么拖拽的提供者是可以给出URL的
+            /// 第二个参数是绑定参数  ，这个参数大概是说，当我们拖过来的时候，不是他们掉下来的时候，而是拖过来的时候
+                .onDrop(of: ["public.image", "public.text"], isTargeted: nil) { providers, location in
+                    var convertLocation = location
+                    convertLocation = CGPoint(x: convertLocation.x - geometry.size.width/2, y:convertLocation.y - geometry.size.height/2)
+                    return self.drop(providers: providers, at: convertLocation)
+                }
+                .gesture(doubleTap())
             }
         }
+    }
+    
+    @State private var zoomScale: CGFloat = 1.0
+    
+    private func doubleTap() -> some Gesture {
+        TapGesture(count: 2)
+            .onEnded { scale in
+                zoomScale = 1.0
+            }
     }
     
     private func font(for emoji: EmojiArt.Emoji) -> Font {
