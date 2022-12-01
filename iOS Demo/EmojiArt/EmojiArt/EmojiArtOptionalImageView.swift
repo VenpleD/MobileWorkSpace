@@ -13,7 +13,8 @@ struct EmojiArtOptionalImageView: View {
         return Group {
             if backgroundImage != nil {
                 Image(uiImage: backgroundImage!)
-                    .border(Color.red, width: 5)
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fill)
             }
         }
     }

@@ -28,12 +28,12 @@ struct EmojiArtDocumentView: View {
                 ZStack {
                     Color.white.overlay(
                         EmojiArtOptionalImageView(backgroundImage: document.backgroundImage)
-                            .frame(width: geometry.size.width, height: geometry.size.height)
-                            .clipped()
+                            .scaleEffect(self.zoomScale)
+                            .offset(self.dragOffset)
                     )
                     ForEach(self.document.emojiList) { emoji in
                         Text(emoji.text)
-                            .font(self.font(for: emoji))
+                            .font(animatableSize: emoji.fontSize * zoomScale)
                             .position(self.position(for: emoji, in: geometry.size))
                     }
                 }
@@ -42,30 +42,82 @@ struct EmojiArtDocumentView: View {
             /// 第一个参数，是你想要拖拽的是什么，这里我们想要拖拽的是public.image，这里"public.image"是一个URI，它规定了这些内容类型的公共协议，这些内容都是image，我们需要URL，那么拖拽的提供者是可以给出URL的
             /// 第二个参数是绑定参数  ，这个参数大概是说，当我们拖过来的时候，不是他们掉下来的时候，而是拖过来的时候
                 .onDrop(of: ["public.image", "public.text"], isTargeted: nil) { providers, location in
-                    var convertLocation = location
+                    var convertLocation = location 
                     convertLocation = CGPoint(x: convertLocation.x - geometry.size.width/2, y:convertLocation.y - geometry.size.height/2)
+                    convertLocation = CGPoint(x: convertLocation.x - dragOffset.width, y: convertLocation.y - dragOffset.height)
+                    convertLocation = CGPoint(x: convertLocation.x / zoomScale, y: convertLocation.y / zoomScale)
                     return self.drop(providers: providers, at: convertLocation)
                 }
-                .gesture(doubleTap())
+                .gesture(dragGestureFunc())
+                .gesture(doubleTap(in: geometry.size))
+                .gesture(magnificationGestureFunc())
             }
         }
     }
     
-    @State private var zoomScale: CGFloat = 1.0
+    @State private var steadyZoomScale: CGFloat = 1.0
     
-    private func doubleTap() -> some Gesture {
-        TapGesture(count: 2)
-            .onEnded { scale in
-                zoomScale = 1.0
+    @GestureState private var gestureZoomScale: CGFloat = 1.0
+    
+    @State private var steadyDragOffset: CGSize = .zero
+    
+    @GestureState private var dragGestureOffset: CGSize = .zero
+    
+    private var zoomScale: CGFloat {
+        steadyZoomScale * gestureZoomScale
+    }
+    
+    private var dragOffset: CGSize {
+        (steadyDragOffset + dragGestureOffset) * zoomScale
+    }
+    
+    private func zoomToFit(_ image: UIImage?, in size: CGSize) {
+        if image != nil, let image = image, image.size.width > 0, image.size.height > 0 {
+            let hZoom = size.width / image.size.width
+            let vZoom = size.height / image.size.height
+            self.steadyZoomScale = min(hZoom, vZoom)
+            self.steadyDragOffset = CGSizeZero
+        }
+    }
+    
+    private func magnificationGestureFunc() -> some Gesture {
+        MagnificationGesture()
+            .updating($gestureZoomScale) { magnificationScale, gestureZoomScale, transcation in
+                gestureZoomScale = magnificationScale
+            }
+            .onEnded() { magnificationScale in
+                steadyZoomScale *= magnificationScale
             }
     }
     
-    private func font(for emoji: EmojiArt.Emoji) -> Font {
-        Font.system(size: emoji.fontSize)
+    private func doubleTap(in size: CGSize) -> some Gesture {
+        TapGesture(count: 2)
+            .onEnded { scale in
+                withAnimation {
+                    zoomToFit(document.backgroundImage, in: size)                    
+                }
+            }
     }
     
+    private func dragGestureFunc() -> some Gesture {
+        DragGesture()
+            .updating($dragGestureOffset) {lastDragOffset, dragGestureOffset, transaction in
+                dragGestureOffset = lastDragOffset.translation / zoomScale
+            }
+            .onEnded { finalDragOffset in
+                self.steadyDragOffset = self.steadyDragOffset + (finalDragOffset.translation / zoomScale)
+            }
+    }
+    
+//    private func font(for emoji: EmojiArt.Emoji) -> Font {
+//        Font.system(size: emoji.fontSize * zoomScale)
+//    }
+    
     private func position(for emoji: EmojiArt.Emoji, in size: CGSize) -> CGPoint {
-        CGPoint(x: emoji.position.x + size.width / 2, y: emoji.position.y + size.height / 2)
+        var position = CGPoint(x: emoji.position.x * zoomScale, y: emoji.position.y * zoomScale)
+        position = CGPoint(x: position.x + dragOffset.width, y: position.y + dragOffset.height)
+        position = CGPoint(x: position.x + size.width / 2, y: position.y + size.height / 2)
+        return position
     }
     
     private func drop(providers: [NSItemProvider], at location: CGPoint) -> Bool {
