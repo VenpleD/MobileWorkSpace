@@ -6,23 +6,35 @@
 //
 
 import SwiftUI
+import Combine
 
 class EmojiArtDocument: ObservableObject {
     
-    static let palette: String = "😗😱🏐😗😱🏐🐶🐢⚽️"
+    static let palette: String = "😗😱🏐🐶🐢⚽️"
+    
+    private var emojiArtCancelable: Cancellable?
     
     init() {
         emojiArt = EmojiArt(json: UserDefaults.standard.data(forKey: emojiArtKey)) ?? EmojiArt()
+        emojiArtCancelable = $emojiArt.sink(receiveValue: { emojiArt in
+            UserDefaults.standard.set(emojiArt.json(), forKey: self.emojiArtKey)
+        })
         fetchBackgroundImage()
     }
     
-    @Published private var emojiArt: EmojiArt {
-        didSet {
-            UserDefaults.standard.set(emojiArt.json(), forKey: emojiArtKey)
-        }
-    }
+    @Published private var emojiArt: EmojiArt
     
     @Published private(set) var backgroundImage: UIImage?
+    
+    private var fetchBackgroundUrl: Cancellable?
+    
+    var backgroundURL: URL? {
+        get { emojiArt.backgroundURL }
+        set {
+            emojiArt.backgroundURL = newValue
+            fetchBackgroundImage()
+        }
+    }
     
     var emojiList: [EmojiArt.Emoji] { emojiArt.emojis }
     
@@ -42,23 +54,27 @@ class EmojiArtDocument: ObservableObject {
             emojiArt.emojis[index].size = Int((CGFloat(emojiArt.emojis[index].size) * scale).rounded(.toNearestOrEven))
         }
     }
-    
-    func setBackgroundURL(_ url: URL?) {
-        emojiArt.backgroundURL = url?.imageURL;
-        fetchBackgroundImage()
-    }
 
     func fetchBackgroundImage() {
         if let url = emojiArt.backgroundURL {
-            DispatchQueue.global(qos: .userInitiated).async {
-                if let imageData = try? Data(contentsOf: url) {
-                    DispatchQueue.main.async {
-                        if url == self.emojiArt.backgroundURL {
-                            self.backgroundImage = UIImage(data: imageData)                            
-                        }
-                    }
+            fetchBackgroundUrl?.cancel()
+            fetchBackgroundUrl = URLSession.shared
+                .dataTaskPublisher(for: url)
+                .map{ data, urlResponse in UIImage(data: data) }
+                .replaceError(with: nil)
+                .receive(on: DispatchQueue.main)
+                .sink { image in
+                    self.backgroundImage = image
                 }
-            }
+//            DispatchQueue.global(qos: .userInitiated).async {
+//                if let imageData = try? Data(contentsOf: url) {
+//                    DispatchQueue.main.async {
+//                        if url == self.emojiArt.backgroundURL {
+//                            self.backgroundImage = UIImage(data: imageData)
+//                        }
+//                    }
+//                }
+//            }
         }
     }
     

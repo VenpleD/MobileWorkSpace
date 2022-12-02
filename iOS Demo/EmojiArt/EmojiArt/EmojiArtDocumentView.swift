@@ -31,10 +31,14 @@ struct EmojiArtDocumentView: View {
                             .scaleEffect(self.zoomScale)
                             .offset(self.dragOffset)
                     )
-                    ForEach(self.document.emojiList) { emoji in
-                        Text(emoji.text)
-                            .font(animatableSize: emoji.fontSize * zoomScale)
-                            .position(self.position(for: emoji, in: geometry.size))
+                    if !isLoading {
+                        ForEach(self.document.emojiList) { emoji in
+                            Text(emoji.text)
+                                .font(animatableSize: emoji.fontSize * zoomScale)
+                                .position(self.position(for: emoji, in: geometry.size))
+                        }
+                    } else {
+                        Image(systemName: "hourglass").imageScale(.large).spinning()
                     }
                 }
                 .clipped()
@@ -53,6 +57,10 @@ struct EmojiArtDocumentView: View {
                 .gesture(magnificationGestureFunc())
             }
         }
+    }
+    
+    private var isLoading: Bool {
+        document.backgroundImage == nil && (document.backgroundURL != nil)
     }
     
     @State private var steadyZoomScale: CGFloat = 1.0
@@ -123,8 +131,7 @@ struct EmojiArtDocumentView: View {
     private func drop(providers: [NSItemProvider], at location: CGPoint) -> Bool {
         // 当参数是要传类型变量的时候，需要加".self"，他是类型中的一个静态变量，返回类型本身，这种方式，对实例对象有效，对类也有效
         var found = providers.loadFirstObject(ofType: URL.self) { url in
-            print("dropped \(url)")
-            self.document.setBackgroundURL(url)
+            self.document.backgroundURL = url
         }
         if (!found) {
             found = providers.loadObjects(ofType: String.self, using: { string in
