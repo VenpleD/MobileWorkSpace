@@ -30,7 +30,7 @@ extension EmojiArtDocument {
         paletteNames.keys.sorted(by: { paletteNames[$0]! < paletteNames[$1]! })
     }
     
-    var defaultPalettes: String {
+    var defaultPalette: String {
         sortedPalettes.first ?? "⚠️"
     }
     
@@ -61,5 +61,37 @@ extension EmojiArtDocument {
         paletteNames[palette] = nil
         paletteNames[newPalette] = name
         return newPalette
+    }
+    
+    func palette(after otherPalette: String) -> String {
+        palette(offsetBy: +1, from: otherPalette)
+    }
+    func palette(before otherPalette: String) -> String {
+        palette(offsetBy: -1, from: otherPalette)
+    }
+    
+    private func palette(offsetBy offset: Int, from otherPalette: String) -> String {
+        if let currentIndex = mostLikelyIndex(of: otherPalette) {
+            let newIndex = (currentIndex + (offset >= 0 ? offset : sortedPalettes.count - abs(offset) % sortedPalettes.count)) % sortedPalettes.count
+            return sortedPalettes[newIndex]
+        } else {
+            return defaultPalette
+        }
+    }
+    
+    // this is a trick to make the code in the demo a little bit simpler
+    // in the real world, we'd want palettes to be Identifiable
+    // here we're simply guessing at that 😀
+    private func mostLikelyIndex(of palette: String) -> Int? {
+        let paletteSet = Set(palette)
+        var best: (index: Int, score: Int)?
+        let palettes = sortedPalettes
+        for index in palettes.indices {
+            let score = paletteSet.intersection(Set(palettes[index])).count
+            if score > (best?.score ?? 0) {
+                best = (index, score)
+            }
+        }
+        return best?.index
     }
 }

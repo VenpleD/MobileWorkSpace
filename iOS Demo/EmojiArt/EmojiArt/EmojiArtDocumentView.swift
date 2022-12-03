@@ -10,13 +10,19 @@ import SwiftUI
 struct EmojiArtDocumentView: View {
     @ObservedObject var document: EmojiArtDocument
     
+    @State var chosenPalette: String = ""
+    
+    @State var settingBgImageAlertStatue: Bool = false
+    
+    @State var noPastedContentAlertStatus: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
-                PaletteChooser()
+                PaletteChooser(document: document, chosenPalette: $chosenPalette)
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(EmojiArtDocument.palette.map{ String($0) }, id:\.self) { emoji in
+                        ForEach(chosenPalette.map{ String($0) }, id:\.self) { emoji in
                             Text(emoji)
                                 .font(Font.system(size: defaultEmojiSize))
                                 .onDrag {
@@ -25,6 +31,9 @@ struct EmojiArtDocumentView: View {
                         }
                     }
                 }
+            }
+            .onAppear {
+                self.chosenPalette = self.document.defaultPalette
             }
             GeometryReader { geometry in
                 ZStack {
@@ -44,6 +53,9 @@ struct EmojiArtDocumentView: View {
                     }
                 }
                 .clipped()
+                .onReceive(self.document.$backgroundImage, perform: { backgroundImage in
+                    zoomToFit(backgroundImage, in: geometry.size)
+                })
                 .edgesIgnoringSafeArea([.horizontal, .bottom])                
             /// 第一个参数，是你想要拖拽的是什么，这里我们想要拖拽的是public.image，这里"public.image"是一个URI，它规定了这些内容类型的公共协议，这些内容都是image，我们需要URL，那么拖拽的提供者是可以给出URL的
             /// 第二个参数是绑定参数  ，这个参数大概是说，当我们拖过来的时候，不是他们掉下来的时候，而是拖过来的时候
@@ -58,6 +70,44 @@ struct EmojiArtDocumentView: View {
                 .gesture(doubleTap(in: geometry.size))
                 .gesture(magnificationGestureFunc())
             }
+            .zIndex(-1)
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button {
+                    if let url = UIPasteboard.general.url, url != self.document.backgroundURL {
+                        self.settingBgImageAlertStatue = true
+                    } else {
+                        self.noPastedContentAlertStatus = true;
+                    }
+                } label: {
+                    Image(systemName: "doc.on.clipboard")
+                        .alert("复制图片地址，点击此按钮以粘贴图片", isPresented: $noPastedContentAlertStatus) {
+                            Button {
+                                self.noPastedContentAlertStatus = false
+                            } label: {
+                                Text("OK")
+                            }
+
+                        }
+                }
+                .alert("是否要粘贴图片地址\(UIPasteboard.general.url?.absoluteString ?? "")", isPresented: $settingBgImageAlertStatue) {
+                    HStack {
+                        Button {
+                            self.settingBgImageAlertStatue = false
+                            self.document.backgroundURL = UIPasteboard.general.url
+                        } label: {
+                            Text("OK")
+                        }
+                        Button {
+                            self.settingBgImageAlertStatue = false
+                        } label: {
+                            Text("Cancel")
+                        }
+
+                    }
+                }
+            }
         }
     }
     
@@ -65,28 +115,24 @@ struct EmojiArtDocumentView: View {
         document.backgroundImage == nil && (document.backgroundURL != nil)
     }
     
-    @State private var steadyZoomScale: CGFloat = 1.0
-    
     @GestureState private var gestureZoomScale: CGFloat = 1.0
-    
-    @State private var steadyDragOffset: CGSize = .zero
     
     @GestureState private var dragGestureOffset: CGSize = .zero
     
     private var zoomScale: CGFloat {
-        steadyZoomScale * gestureZoomScale
+        self.document.steadyZoomScale * gestureZoomScale
     }
     
     private var dragOffset: CGSize {
-        (steadyDragOffset + dragGestureOffset) * zoomScale
+        (self.document.steadyDragOffset + dragGestureOffset) * zoomScale
     }
     
     private func zoomToFit(_ image: UIImage?, in size: CGSize) {
-        if image != nil, let image = image, image.size.width > 0, image.size.height > 0 {
+        if image != nil, let image = image, image.size.width > 0, image.size.height > 0, size.width > 0, size.height > 0 {
             let hZoom = size.width / image.size.width
             let vZoom = size.height / image.size.height
-            self.steadyZoomScale = min(hZoom, vZoom)
-            self.steadyDragOffset = CGSizeZero
+            self.document.steadyZoomScale = min(hZoom, vZoom)
+            self.document.steadyDragOffset = CGSizeZero
         }
     }
     
@@ -96,7 +142,7 @@ struct EmojiArtDocumentView: View {
                 gestureZoomScale = magnificationScale
             }
             .onEnded() { magnificationScale in
-                steadyZoomScale *= magnificationScale
+                self.document.steadyZoomScale *= magnificationScale
             }
     }
     
@@ -115,7 +161,7 @@ struct EmojiArtDocumentView: View {
                 dragGestureOffset = lastDragOffset.translation / zoomScale
             }
             .onEnded { finalDragOffset in
-                self.steadyDragOffset = self.steadyDragOffset + (finalDragOffset.translation / zoomScale)
+                self.document.steadyDragOffset = self.document.steadyDragOffset + (finalDragOffset.translation / zoomScale)
             }
     }
     
