@@ -9,14 +9,19 @@
 import SwiftUI
 
 struct FlightSearch {
-    var destination: String
-    var origin: String?
-    var airline: String?
+    var destination: Airport
+    var origin: Airport?
+    var airline: Airline?
     var inTheAir: Bool = true
+}
+
+extension FlightSearch {
+    var predicate:
 }
 
 struct FlightsEnrouteView: View {
     @State var flightSearch: FlightSearch
+    @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
         NavigationStack {
@@ -29,7 +34,7 @@ struct FlightsEnrouteView: View {
                             Text("Filter")
                         }
                         .sheet(isPresented: $showFilter) {
-                            FilterFlights(flightSearch: $flightSearch, isPresented: $showFilter)
+                            FilterFlights(flightSearch: $flightSearch, isPresented: $showFilter).environment(\.managedObjectContext, viewContext)
                         }
                     }
                 }
@@ -58,13 +63,14 @@ struct FlightsEnrouteView: View {
 }
 
 struct FlightList: View {
-    @ObservedObject var flightFetcher: FlightFetcher
 
+    @FetchRequest var flights: FetchedResults<Flight>
+    
     init(_ flightSearch: FlightSearch) {
-        self.flightFetcher = FlightFetcher(flightSearch: flightSearch)
+        let request = Flight.fetchRequest(NSPredicate(format: "destination_ = %@", flightSearch.destination))
+        _flights = FetchRequest(fetchRequest: request)
     }
 
-    var flights: [FAFlight] { flightFetcher.latest }
     
     var body: some View {
         List {
@@ -77,7 +83,7 @@ struct FlightList: View {
     
     private var title: String {
         let title = "Flights"
-        if let destination = flights.first?.destination {
+        if let destination = flights.first?.destination.icao {
             return title + " to \(destination)"
         } else {
             return title
@@ -86,10 +92,8 @@ struct FlightList: View {
 }
 
 struct FlightListEntry: View {
-    @ObservedObject var allAirports = Airports.all
-    @ObservedObject var allAirlines = Airlines.all
     
-    var flight: FAFlight
+    @ObservedObject var flight: Flight
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -101,7 +105,7 @@ struct FlightListEntry: View {
     }
     
     var name: String {
-        return "\(allAirlines[flight.airlineCode]?.friendlyName ?? "Unknown Airline") \(flight.number)"
+        return "\(flight.airline.friendlyName) \(flight.number)"
     }
 
     var arrives: String {
@@ -116,12 +120,12 @@ struct FlightListEntry: View {
     }
 
     var origin: String {
-        return "from " + (allAirports[flight.origin]?.friendlyName ?? "Unknown Airport")
+        return "from " + flight.airline.friendlyName
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        FlightsEnrouteView(flightSearch: FlightSearch(destination: "KSFO"))
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FlightsEnrouteView(flightSearch: FlightSearch(destination: "KSFO"))
+//    }
+//}
