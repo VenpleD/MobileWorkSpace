@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct FlightSearch {
     var destination: Airport
@@ -16,7 +17,20 @@ struct FlightSearch {
 }
 
 extension FlightSearch {
-    var predicate:
+    var predicate: NSPredicate {
+        var formatString = "destination_ = %@"
+        var arr: [NSManagedObject] = [destination]
+        if origin != nil {
+            formatString += " and origin_ = %@"
+            arr.append(origin!)
+        }
+        if airline != nil {
+            formatString += " and airline_ = %@"
+            arr.append(airline!)
+        }
+        if inTheAir { formatString += " and departure != nil" }
+        return NSPredicate(format: formatString, argumentArray: arr)
+    }
 }
 
 struct FlightsEnrouteView: View {
@@ -67,7 +81,7 @@ struct FlightList: View {
     @FetchRequest var flights: FetchedResults<Flight>
     
     init(_ flightSearch: FlightSearch) {
-        let request = Flight.fetchRequest(NSPredicate(format: "destination_ = %@", flightSearch.destination))
+        let request = Flight.fetchRequest(flightSearch.predicate)
         _flights = FetchRequest(fetchRequest: request)
     }
 
