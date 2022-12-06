@@ -24,15 +24,37 @@ class EmojiArtDocumentStore: ObservableObject {
         })
     }
     
+    private var directory: URL?
+    init(directory: URL) {
+        self.name = directory.lastPathComponent
+        self.directory = directory
+        do {
+            let documents = try FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: [.isDirectoryKey])
+            for document in documents {
+                let emojiArtDocument = EmojiArtDocument(url: document)
+                self.documentNames[emojiArtDocument] = document.lastPathComponent
+            }
+        } catch {
+            print("load Docuemnts error in directory:\(directory) errorInfo: \(error.localizedDescription)")
+        }
+
+    }
+    
     func name(for document: EmojiArtDocument) -> String {
+        var nameString = ""
         if documentNames[document] == nil {
             documentNames[document] = "Untitled"
         }
-        return documentNames[document]!
+        nameString = documentNames[document]!
+        return nameString
     }
     
     func setName(_ name: String, for document: EmojiArtDocument) {
-        documentNames[document] = name
+        if let documentUrl = directory?.appendingPathComponent(name, conformingTo: .data), !documentNames.values.contains(name) {
+            removeDocument(document)
+            document.url = documentUrl;
+        }
+        documentNames[document] = name;
     }
     
     var documents: [EmojiArtDocument] {
@@ -40,10 +62,16 @@ class EmojiArtDocumentStore: ObservableObject {
     }
     
     func addDocument(named name: String = "Untitled") {
-        documentNames[EmojiArtDocument()] = name
+        let uniquedName = name.uniqued(withRespectTo: documentNames.values)
+        let documentUrl = directory?.appendingPathComponent(uniquedName, conformingTo: .data)
+        let emojiArtDocument = EmojiArtDocument(url: documentUrl!)
+        documentNames[emojiArtDocument] = uniquedName
     }
     
     func removeDocument(_ document: EmojiArtDocument) {
+        if let name = documentNames[document], let url = directory?.appendingPathComponent(name, conformingTo: .data) {
+            try? FileManager.default.removeItem(at: url)
+        }
         documentNames[document] = nil
     }
     

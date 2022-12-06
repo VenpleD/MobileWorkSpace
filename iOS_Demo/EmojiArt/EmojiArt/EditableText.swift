@@ -17,6 +17,7 @@ struct EditableText: View {
         self.text = text
         self.isEditing = isEditing
         self.onChanged = onChanged
+        _editableText = State(wrappedValue: text)
     }
     
     @State private var editableText: String = ""
@@ -40,7 +41,6 @@ struct EditableText: View {
                 }
             }
         }
-        .onAppear { self.editableText = self.text }
     }
     
     func callOnChangedIfChanged() {

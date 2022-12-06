@@ -11,13 +11,12 @@ import SwiftUI
 struct EmojiArtApp: App {
     var body: some Scene {
         WindowGroup {
-            EmojiArtDocumentChooser().environmentObject(EmojiArtDocumentStore())
+            EmojiArtDocumentChooser().environmentObject(createInitDocumentStore())
         }
     }
     func createInitDocumentStore() -> EmojiArtDocumentStore {
-        let emojiArtDocumentStore = EmojiArtDocumentStore()
-        emojiArtDocumentStore.addDocument(named: "Hello Emoji")
-        emojiArtDocumentStore.addDocument()
+        let url = try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false);
+        let emojiArtDocumentStore = EmojiArtDocumentStore(directory: url!)
         return emojiArtDocumentStore
     }
 }
