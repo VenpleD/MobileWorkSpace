@@ -16,6 +16,8 @@ struct EmojiArtDocumentView: View {
     
     @State var noPastedContentAlertStatus: Bool = false
     
+    @State var imagePickerStatue: Bool = false
+    
     var body: some View {
         VStack {
             HStack {
@@ -74,39 +76,54 @@ struct EmojiArtDocumentView: View {
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    if let url = UIPasteboard.general.url, url != self.document.backgroundURL {
-                        self.settingBgImageAlertStatue = true
-                    } else {
-                        self.noPastedContentAlertStatus = true;
+                HStack {
+                    
+                    Image(systemName: "photo").imageScale(.large)
+                        .onTapGesture {
+                            
+                            self.imagePickerStatue = true
+                        }
+                        .sheet(isPresented: $imagePickerStatue, content: {
+                            ImagePickerViewController { imageUrl in
+                                self.document.backgroundURL = imageUrl
+                                self.imagePickerStatue = false
+                            }
+                        })
+                    Button {
+                        if let url = UIPasteboard.general.url, url != self.document.backgroundURL {
+                            self.settingBgImageAlertStatue = true
+                        } else {
+                            self.noPastedContentAlertStatus = true;
+                        }
+                    } label: {
+                        Image(systemName: "doc.on.clipboard")
+                            .alert("复制图片地址，点击此按钮以粘贴图片", isPresented: $noPastedContentAlertStatus) {
+                                Button {
+                                    self.noPastedContentAlertStatus = false
+                                } label: {
+                                    Text("OK")
+                                }
+
+                            }
                     }
-                } label: {
-                    Image(systemName: "doc.on.clipboard")
-                        .alert("复制图片地址，点击此按钮以粘贴图片", isPresented: $noPastedContentAlertStatus) {
+                    .alert("是否要粘贴图片地址\(UIPasteboard.general.url?.absoluteString ?? "")", isPresented: $settingBgImageAlertStatue) {
+                        HStack {
                             Button {
-                                self.noPastedContentAlertStatus = false
+                                self.settingBgImageAlertStatue = false
+                                self.document.backgroundURL = UIPasteboard.general.url
                             } label: {
                                 Text("OK")
                             }
+                            Button {
+                                self.settingBgImageAlertStatue = false
+                            } label: {
+                                Text("Cancel")
+                            }
 
                         }
-                }
-                .alert("是否要粘贴图片地址\(UIPasteboard.general.url?.absoluteString ?? "")", isPresented: $settingBgImageAlertStatue) {
-                    HStack {
-                        Button {
-                            self.settingBgImageAlertStatue = false
-                            self.document.backgroundURL = UIPasteboard.general.url
-                        } label: {
-                            Text("OK")
-                        }
-                        Button {
-                            self.settingBgImageAlertStatue = false
-                        } label: {
-                            Text("Cancel")
-                        }
-
                     }
                 }
+
             }
         }
     }

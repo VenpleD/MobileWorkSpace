@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B9DC51A2941BEFD00FFD842 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DC5192941BEFD00FFD842 /* MapView.swift */; };
 		9E582174293C903C0015BF5F /* EnrouteCoreDataApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E582173293C903C0015BF5F /* EnrouteCoreDataApp.swift */; };
 		9E582176293C903C0015BF5F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E582175293C903C0015BF5F /* ContentView.swift */; };
 		9E582178293C903E0015BF5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E582177293C903E0015BF5F /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B9DC5192941BEFD00FFD842 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		9E582170293C903C0015BF5F /* EnrouteCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EnrouteCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E582173293C903C0015BF5F /* EnrouteCoreDataApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrouteCoreDataApp.swift; sourceTree = "<group>"; };
 		9E582175293C903C0015BF5F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				9E58218C293C9AD50015BF5F /* FilterFlights.swift */,
+				9B9DC5192941BEFD00FFD842 /* MapView.swift */,
 				9E58218B293C9AD50015BF5F /* FlightFetcher.swift */,
 				9E582187293C9AD50015BF5F /* FlightsEnrouteView.swift */,
 				9E582189293C9AD50015BF5F /* FoundationExtensions.swift */,
@@ -206,6 +209,7 @@
 				9E58217D293C903E0015BF5F /* Persistence.swift in Sources */,
 				9E582180293C903E0015BF5F /* EnrouteCoreData.xcdatamodeld in Sources */,
 				9E58219A293C9ADD0015BF5F /* FlightAware+AirlineInfo.swift in Sources */,
+				9B9DC51A2941BEFD00FFD842 /* MapView.swift in Sources */,
 				9E582176293C903C0015BF5F /* ContentView.swift in Sources */,
 				9E58219D293C9ADD0015BF5F /* FlightAwareRequest.swift in Sources */,
 				9E58219E293C9ADD0015BF5F /* FlightSimulationData.swift in Sources */,

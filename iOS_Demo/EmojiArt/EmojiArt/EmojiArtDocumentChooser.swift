@@ -14,7 +14,7 @@ struct EmojiArtDocumentChooser: View {
     
     @State private var navIsActive: Bool = false
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 ForEach(documentStore.documents) { document in
                     NavigationLink {
