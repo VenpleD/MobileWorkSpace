@@ -58,8 +58,15 @@ class EmojiArtDocumentStore: ObservableObject {
     }
     
     var documents: [EmojiArtDocument] {
-        documentNames.keys.sorted { documentNames[$0]! < documentNames[$1]! }
+        get {
+            documentNames.keys.sorted { documentNames[$0]! < documentNames[$1]! }
+        }
+        set {
+            documentView = newValue.map{ EmojiArtDocumentView(document: $0) }
+        }
     }
+    
+    var documentView: [EmojiArtDocumentView] = []
     
     func addDocument(named name: String = "Untitled") {
         let uniquedName = name.uniqued(withRespectTo: documentNames.values)
